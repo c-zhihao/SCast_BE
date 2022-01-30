@@ -1,0 +1,23 @@
+{
+  "name": "scast_be",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-zhihao/SCast_BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c-zhihao/SCast_BE/issues"
+  },
+  "homepage": "https://github.com/c-zhihao/SCast_BE#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8"
+  }
+}

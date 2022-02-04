@@ -29,5 +29,5 @@ mongoose.connect(dbURI)
 app.use('/user',userRoutes);
 
 app.use((req, res) => {
-    res.send('404 Page not Found');
+    res.send('404 Page not Found hi test test');
 });

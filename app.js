@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 var http = require("http");
+const PORT = process.env.PORT || 3000;
 
 const userRoutes = require('./routes/user');
 
@@ -16,7 +17,9 @@ mongoose.connect(dbURI)
     .then((result) => {
         console.log('connected to db!');
         //listen for reuqests
-        app.listen(3000);
+        app.listen(PORT,()=>{
+            console.log("server is listening to port "+PORT);
+        });
     })
     .catch((err) => {
         console.log(err);

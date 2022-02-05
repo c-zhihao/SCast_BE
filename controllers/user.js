@@ -1,11 +1,19 @@
 //require the model if using mongoose
 const user = require('../models/user');
 
-const getUser = async (req, res) => {
+const getAllUser = async (req, res) => {
+    console.log("get all user");
+    await user.find().then((result)=>{
+        res.send(result);
+    }).catch((err)=>{
+        console.log(err);
+    })
+}
+
+const getOneUser = async (req, res) => {
     console.log("get one user");
-    //console.log(req);
-    //const id = req.params.id;
-    const id = '61f9563b0068fdd21f4f1182';
+    console.log(req.params);
+    const id = req.params.id;
     await user.findById(id).then((result)=>{
         res.send(result);
     }).catch((err)=>{
@@ -14,30 +22,20 @@ const getUser = async (req, res) => {
     //res.send(200);
 }
 
-const getAllUser = async (req, res) => {
-    console.log("get all user");
-    res.send(200);
-}
 
 const addUser = async (req, res) => {
-    console.log("add one user");
+    console.log("Creating new user...");
+    console.log(req.body);
+    const userDetails = req.body;
+    const image = userDetails.image ? req.body.image:'null'
+    console.log("image link: "+image);
     const User = new user({
-        name: 'zh',
-        username: '123',
-        password: 'qwe',
-        comment:[{
-            userId:'123',
-            commentText:'abc',
-            imageURL:'abc'
-        },
-        {
-            userId:'123',
-            commentText:'abc',
-            imageURL:'abc'
-        }]
-
+        name: userDetails.name, 
+        username: userDetails.username,
+        password: userDetails.password,
+        role: "student",
+        imageURL: image
     })
-
 
     User.save()
         .then((result)=>{
@@ -49,7 +47,7 @@ const addUser = async (req, res) => {
 }
 
 module.exports = {
-    getUser,
+    getOneUser,
     getAllUser,
     addUser
 }

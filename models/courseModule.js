@@ -17,6 +17,6 @@ const moduleSchema = new Schema({
     
 },{timestamps:true});
 
-const user = mongoose.model('user',userSchema);
+const courseModule = mongoose.model('module',moduleSchema);
 
-module.exports = user;
+module.exports = courseModule;

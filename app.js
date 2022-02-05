@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-var http = require("http");
+var bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
 const userRoutes = require('./routes/user');
+const moduleRoutes = require('./routes/courseModule');
 
 
 const app = express();
@@ -12,22 +13,28 @@ const pw = 'blackrabbit1';
 const db = 'Application';
 
 const dbURI = 'mongodb+srv://' + user + ':' + pw + '@scast.nr5lz.mongodb.net/' + db + '?retryWrites=true&w=majority';
-console.log(dbURI);
+//console.log(dbURI);
 mongoose.connect(dbURI)
     .then((result) => {
         console.log('connected to db!');
         //listen for reuqests
-        app.listen(PORT,()=>{
-            console.log("server is listening to port "+PORT);
+        app.listen(PORT, () => {
+            console.log("server is listening to port " + PORT);
         });
     })
     .catch((err) => {
         console.log(err);
     });
 
+app.use(bodyParser.json());
 
-app.use('/user',userRoutes);
+
+app.get('/', function (req, res) {
+    res.send('Welcome to SCast Backend');
+});
+app.use('/user', userRoutes);
+app.use('/module', moduleRoutes);
 
 app.use((req, res) => {
-    res.send('404 Page not Found hi test test');
+    res.send('Page not found in SCast');
 });

@@ -4,6 +4,7 @@ import data from '../data'
 import ForumDetail from './ForumDetail'
 import { FaChartBar } from 'react-icons/fa'
 import Footer from './Footer'
+import axios from 'axios'
 
 export default function ForumPage() {
   const [moduleData, setModuleData] = useState([])
@@ -13,6 +14,9 @@ export default function ForumPage() {
   const [showY4, setShowY4] = useState(true)
 
   useEffect(() => {
+    axios.get('https://scastbe.herokuapp.com/user').then((res) => {
+      console.log(res.data)
+    })
     setModuleData(data)
   }, [])
 

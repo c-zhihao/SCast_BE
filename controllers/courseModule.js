@@ -67,15 +67,5 @@ module.exports = {
     updateModule
 }
 
-// var comment = {
-//     "userId":req.body.id,
-//     "commentText":req.body.postTitle,
-// }
 
-// var post = {
-//     "userId":"123",
-//     "postTitle":"title 1",
-//     "postImage":"link 1",
-//     "comment":[]
-// }
-// newModule.post.push(post);
+

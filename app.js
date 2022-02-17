@@ -5,11 +5,13 @@ var cors = require("cors");
 const PORT = process.env.PORT || 3000;
 
 var corsOptions = {
-    origin: "http://localhost:3001"
+    origin: "*"
 };
 
 const userRoutes = require('./routes/user');
 const moduleRoutes = require('./routes/courseModule');
+const postRoutes = require('./routes/post');
+const commentRoutes = require('./routes/comment');
 
 
 const app = express();
@@ -41,6 +43,8 @@ app.get('/', function (req, res) {
 });
 app.use('/user', userRoutes);
 app.use('/module', moduleRoutes);
+app.use('/post', postRoutes);
+app.use('/comment', commentRoutes);
 
 app.use((req, res) => {
     res.send('Page not found in SCast');

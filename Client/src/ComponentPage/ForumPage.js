@@ -14,7 +14,7 @@ export default function ForumPage() {
   const [showY4, setShowY4] = useState(true)
 
   useEffect(() => {
-    axios.get('https://scastbe.herokuapp.com/user').then((res) => {
+    axios.get('http://localhost:3000/user/').then((res) => {
       console.log(res.data)
     })
     setModuleData(data)

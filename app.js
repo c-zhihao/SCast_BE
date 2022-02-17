@@ -1,7 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 var bodyParser = require("body-parser");
+var cors = require("cors");
 const PORT = process.env.PORT || 3000;
+
+var corsOptions = {
+    origin: "http://localhost:3001"
+};
 
 const userRoutes = require('./routes/user');
 const moduleRoutes = require('./routes/courseModule');
@@ -11,6 +16,8 @@ const app = express();
 const user = 'user1';
 const pw = 'blackrabbit1';
 const db = 'Application';
+
+app.use(cors(corsOptions)); // parse requests of content-type - application/x-www-form-urlencoded
 
 const dbURI = 'mongodb+srv://' + user + ':' + pw + '@scast.nr5lz.mongodb.net/' + db + '?retryWrites=true&w=majority';
 //console.log(dbURI);

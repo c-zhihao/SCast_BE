@@ -12,6 +12,7 @@ const addPost = async (req, res) => {
                 "userId": postDetails.userId,
                 "postTitle": postDetails.postTitle,
                 "postImage": postDetails.postImage,
+                "postObjective": postDetails.postObjective,
                 "postType": postDetails.postType,
                 "comment": []
             }

@@ -8,11 +8,12 @@ const moduleSchema = new Schema({
         userId:String,
         postTitle:String,
         postImage:String,
+        postObjective:String,
         postType:String,
         comment:[{
             userId:String,
             commentText:String,
-            imageURL:String,
+            commentImage:String,
         }]
     }]
 },{timestamps:true});

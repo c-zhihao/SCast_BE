@@ -12,7 +12,8 @@ const addComment = async (req, res) => {
 
             var comment = {
                 "userId": commentDetails.userId,
-                "commentText": commentDetails.commentText
+                "commentText": commentDetails.commentText,
+                "commentImage": commentDetails.commentImage
             }
             subDoc.comment.push(comment);
 

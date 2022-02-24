@@ -32,9 +32,10 @@ const addModule = async (req, res) => {
 
     newModule.save()
         .then((result) => {
-            res.send(result);
+            res.sendStatus(200);
         }).catch((err) => {
             console.log(err);
+            res.sendStatus(400);
         })
 }
 

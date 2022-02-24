@@ -18,9 +18,10 @@ const addPost = async (req, res) => {
             doc.post.push(post);
 
             doc.save().then((result) => {
-                res.send(result);
+                res.sendStatus(200);
             }).catch((err) => {
                 console.log(err);
+                res.sendStatus(400);
             });
         }
         else {

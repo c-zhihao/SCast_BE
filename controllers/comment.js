@@ -17,9 +17,10 @@ const addComment = async (req, res) => {
             subDoc.comment.push(comment);
 
             doc.save().then((result) => {
-                res.send(result);
+                res.sendStatus(200);
             }).catch((err) => {
                 console.log(err);
+                res.sendStatus(400);
             });
             //res.send(200);
         }

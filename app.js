@@ -19,8 +19,8 @@ const pw = 'blackrabbit1'
 const db = 'Application'
 
 //image size
-app.use(bodyParser.json({ limit: '30mb', extended: true }))
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
+app.use(bodyParser.json({ limit: '10mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
 app.use(cors(corsOptions)) // parse requests of content-type - application/x-www-form-urlencoded
 

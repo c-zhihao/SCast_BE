@@ -73,8 +73,8 @@ const updateModule = async (req, res) => {
 
 const deleteModule = async (req,res)=>{
     console.log('deleting module...');
-    const moduleId = req.body.moduleId;
-    courseModule.deleteOne({_id: moduleId}, function(err){
+    const id = req.params.id;
+    courseModule.deleteOne({_id: id}, function(err){
         if(!err){
             res.status(200).send(formatError(200, "Module deleted successfully", "Module deleted"));
         }else{

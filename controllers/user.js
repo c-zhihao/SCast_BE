@@ -46,7 +46,10 @@ const addUser = async (req, res) => {
         username: userDetails.username,
         password: userDetails.password,
         role: "student",
-        imageURL: image
+        phoneNo: userDetails.phoneNo,
+        telegramId: userDetails.telegramId,
+        imageURL: image,
+        bookmark: []
     })
 
     User.save()
@@ -58,6 +61,41 @@ const addUser = async (req, res) => {
 
 }
 
+const addBookmark = async (req, res) => {
+    console.log("Adding bookmark...");
+    console.log(req.body);
+    const userId = req.params.id;
+    user.findById(userId).then((result) => {
+        result.bookmark.push(req.body.bookmarkId);
+        result.save().then((result) => {
+            res.send(result);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
+const deleteBookmark = async (req,res)=>{
+    console.log('deleting bookmark...');
+    const userId = req.params.id;
+    user.findById(userId).then((result) => {
+        var bookmark = result.bookmark;
+        const index = bookmark.indexOf(req.body.bookmarkId);
+        if (index > -1) {
+            bookmark.splice(index, 1);
+        }
+        result.save().then((result) => {
+            res.send(result);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
 const login = async (req, res) => {
     console.log('logging in user...');
     const username = req.body.username;
@@ -67,9 +105,9 @@ const login = async (req, res) => {
         if (user) {
             const jwtUser = { username: username }
             if (user.password == password) {
-                const jwtToken = jwt.sign(jwtUser,process.env.ACCESS_TOKEN_SECRET);
+                const jwtToken = jwt.sign(jwtUser, process.env.ACCESS_TOKEN_SECRET);
                 let result = {
-                    "token":jwtToken,
+                    "token": jwtToken,
                     user
                 }
                 res.send(result);
@@ -86,5 +124,7 @@ module.exports = {
     getOneUser,
     getAllUser,
     addUser,
-    login
+    login,
+    addBookmark,
+    deleteBookmark
 }

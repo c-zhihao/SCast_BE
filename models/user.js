@@ -7,7 +7,10 @@ const userSchema = new Schema({
     username:String,
     password:String,
     role:String,
-    imageURL:String
+    phoneNo:String,
+    telegramId:String,
+    imageURL:String,
+    bookmark:[String]
 },{timestamps:true});
 
 const user = mongoose.model('user',userSchema);

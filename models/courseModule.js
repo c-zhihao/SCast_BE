@@ -14,6 +14,7 @@ const moduleSchema = new Schema({
             userId:String,
             commentText:String,
             commentImage:String,
+            createdAt: { type: Date, default: Date.now() }
         }]
     }]
 },{timestamps:true});

@@ -10,7 +10,7 @@ router.post('/addUser',userController.addUser);
 router.post('/login', userController.login);
 itemRouter.post('/addBookmark',userController.addBookmark);
 itemRouter.post('/deleteBookmark',userController.deleteBookmark);
-//router.post('/updateUser',userController.addUser);
+itemRouter.post('/updateUser',userController.updateUser);
 
 
 module.exports = router;

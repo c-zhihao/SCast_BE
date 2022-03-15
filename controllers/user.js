@@ -61,6 +61,28 @@ const addUser = async (req, res) => {
 
 }
 
+const updateUser = async (req, res) => {
+    console.log("Updating user...");
+    console.log(req.body);
+    const userId = req.params.id;
+    const userDetails = req.body;
+    user.findById(userId).then((result) => {
+        result.name = userDetails.name;
+        result.username = userDetails.username;
+        result.password = userDetails.password;
+        result.phoneNo = userDetails.phoneNo;
+        result.telegramId = userDetails.telegramId;
+        result.imageURL = userDetails.imageURL;
+        result.save().then((result) => {
+            res.send(result);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }).catch((err) => {
+        console.log(err);
+    })
+}
+
 const addBookmark = async (req, res) => {
     console.log("Adding bookmark...");
     console.log(req.body);
@@ -126,5 +148,6 @@ module.exports = {
     addUser,
     login,
     addBookmark,
-    deleteBookmark
+    deleteBookmark,
+    updateUser
 }

@@ -33,6 +33,34 @@ const addPost = async (req, res) => {
   })
 }
 
+const deletePost = async (req, res) => {
+  console.log(req.body)
+  const postDetails = req.body
+  const id = req.params.id
+  const postId = postDetails.postId;
+  courseModule.findById(id, function (err, doc) {
+    if (!err) {
+      for (let i = 0; i < doc.post.length; i++) {
+        console.log(doc.post[i]._id.toString());
+        console.log(postId);
+        if (doc.post[i]._id.toString() == postId) {
+          doc.post[i].remove();
+          break;
+        }
+      }
+      doc.save().then((result) => {
+        res.send(result);
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+    else {
+
+    }
+  });
+}
+
 module.exports = {
   addPost,
+  deletePost
 }

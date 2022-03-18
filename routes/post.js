@@ -6,6 +6,7 @@ router.use('/:id', itemRouter);
 
 
 itemRouter.post('/addpost',postController.addPost);
+itemRouter.post('/deletePost',postController.deletePost);
 
 
 module.exports = router;

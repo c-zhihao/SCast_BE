@@ -26,9 +26,16 @@ const getOneModule = async (req, res) => {
     console.log(req.params);
     const id = req.params.id;
     await courseModule.findById(id).then((result) => {
-        res.send(result);
+        console.log(result);
+        if (result) {
+            res.send(result);
+        } else {
+            console.log('module not found');
+            res.status(401).send(formatError(401, "Module not found in db", result));
+        }
     }).catch((err) => {
         console.log(err);
+        res.status(401).send(formatError(401, "getOneModuleError", err));
     })
 }
 
@@ -71,13 +78,13 @@ const updateModule = async (req, res) => {
     });
 }
 
-const deleteModule = async (req,res)=>{
+const deleteModule = async (req, res) => {
     console.log('deleting module...');
     const id = req.params.id;
-    courseModule.deleteOne({_id: id}, function(err){
-        if(!err){
+    courseModule.deleteOne({ _id: id }, function (err) {
+        if (!err) {
             res.status(200).send(formatError(200, "Module deleted successfully", "Module deleted"));
-        }else{
+        } else {
             res.status(401).send(formatError(401, "Module does not exist", "Wrong module id"));
         }
     })
